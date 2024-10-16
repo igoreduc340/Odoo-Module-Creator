@@ -1,0 +1,2 @@
+destino_vscode = /home/user/Projects/godoo-erp
+destino = /home/user/Projects/diretorio_teste
