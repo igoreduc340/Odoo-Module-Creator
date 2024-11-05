@@ -59,17 +59,13 @@ Uso
 
 Para utilizar , preencha os dois campos 
 
-![nothing](imgs/image.png)
-
-o nome do modulo `godoo_something_something`
-
-o nome dos arquivos python e xml `sale_order`
+![nothing](imgs/image2.png.png)
 
 eles precisam estar separados com " _ " underlines
 
 
 ao clicar no botão , a seguinte estrutura de pastas sera criada com algumas customizações
 
-![nothing](imgs/dir_tree.png)
+![nothing](imgs/dir_tree_final.png)
 
 
