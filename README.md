@@ -5,14 +5,17 @@ Este script Python ajuda a gerar um módulo Odoo básico, incluindo arquivos ess
 Pré-requisitos
 
 Python 3.x
+
 VSCode: O script faz uso do comando code para abrir arquivos no VSCode.
 
 Instalar dependências
+
 Para instalar as dependências necessárias, crie um ambiente virtual ou use o python global e execute o seguinte comando:
 
 ```pip install -r requirements.txt```
 
 Configuração do ambiente
+
 Antes de executar o script, você precisa configurar um arquivo .env contendo as variáveis de ambiente necessárias para o script. Essas variáveis definem os caminhos de destino onde o módulo será gerado, no projeto existe um arquivo chamado env.example , apos a configuração troque o nome dele para .env
 
 Exemplo de arquivo:
@@ -28,18 +31,20 @@ DESTINO_VSCODE_NAVE=/caminho/para/o/vscode/nave
 DESTINO_MODULOS_NAVE=/caminho/para/o/modulo/nave
 ```
 Uso
-Este script deve ser executado a partir da linha de comando. :
 
-``` python app.py```
+``` python3 app.py```
 
 
 O que o script faz
+
 Cria a estrutura de diretórios:
 
 Cria os diretórios necessários, como views/, models/, etc.
+
 Cria o arquivo Python do modelo:
 
 Gera o arquivo models/my_model.py com um esqueleto básico de modelo Odoo,
+
 Cria o arquivo de visão (XML):
 
 Após a criação do arquivo do modelo, o script abre automaticamente o arquivo Python no VSCode, usando o comando code.
