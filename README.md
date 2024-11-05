@@ -59,7 +59,7 @@ Uso
 
 Para utilizar , preencha os dois campos 
 
-![Texto alternativo](imgs/image.png.png)
+![nothing](imgs/image.png)
 
 o nome do modulo `godoo_something_something`
 
@@ -70,6 +70,6 @@ eles precisam estar separados com " _ " underlines
 
 ao clicar no botão , a seguinte estrutura de pastas sera criada com algumas customizações
 
-![Texto alternativo](imgs/dir_tree.png)
+![nothing](imgs/dir_tree.png)
 
 
