@@ -1,4 +1,4 @@
-# Standard Module Generator for Odoo
+# Odoo Module Creator
 
 Este script Python ajuda a gerar um módulo Odoo básico, incluindo arquivos essenciais como modelos, visões, arquivos de inicialização e manifesto. O script cria os diretórios necessários, configura os arquivos com as informações fornecidas e abre o arquivo Python do modelo no VSCode para facilitar o desenvolvimento.
 
@@ -20,6 +20,8 @@ Para instalar as dependências necessárias, crie um ambiente virtual ou use o P
 Configuração do ambiente
 
 Antes de executar o script, você precisa configurar um arquivo .env contendo as variáveis de ambiente necessárias para o script. Essas variáveis definem os caminhos de destino onde o módulo será gerado, no projeto existe um arquivo chamado env.example , apos a configuração troque o nome dele para .env
+
+use o caminho absoluto como preferencia
 
 Exemplo de arquivo:
 
@@ -51,3 +53,23 @@ Uso
 
 4. **Abertura automática no VSCode**  
    Após a criação dos arquivos, o script abre automaticamente o arquivo Python gerado no VSCode, utilizando o comando `code`, para facilitar a edição e o desenvolvimento imediato.
+
+
+## Utilização
+
+Para utilizar , preencha os dois campos 
+
+![Texto alternativo](imgs/image.png.png)
+
+o nome do modulo `godoo_something_something`
+
+o nome dos arquivos python e xml `sale_order`
+
+eles precisam estar separados com " _ " underlines
+
+
+ao clicar no botão , a seguinte estrutura de pastas sera criada com algumas customizações
+
+![Texto alternativo](imgs/dir_tree.png)
+
+
