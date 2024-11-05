@@ -97,7 +97,7 @@ f"""{{
     'name': '{" ".join(word.capitalize() for word in module_name.split('_'))}',
     'version': '1.0',
     'description': '',
-    'author': 'Asisto - Igor Carvalho',
+    'author': '',
     'license': 'LGPL-3',
     'category': '',
     'depends': [],

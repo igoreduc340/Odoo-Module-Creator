@@ -1,18 +1,22 @@
-Standard Module Generator for Odoo
+# Standard Module Generator for Odoo
 
-Este script Python ajuda a gerar um módulo Odoo básico, incluindo arquivos essenciais como modelos, visões, arquivos de inicialização e manifesto. O script cria os diretórios necessários, configura os arquivos com as informações fornecidas, e abre o arquivo Python do modelo no VSCode para facilitar o desenvolvimento.
+Este script Python ajuda a gerar um módulo Odoo básico, incluindo arquivos essenciais como modelos, visões, arquivos de inicialização e manifesto. O script cria os diretórios necessários, configura os arquivos com as informações fornecidas e abre o arquivo Python do modelo no VSCode para facilitar o desenvolvimento.
 
-Pré-requisitos
+## Pré-requisitos
 
-Python 3.x
+- **Python 3.x**  
+  O script requer a versão 3.x do Python para funcionar corretamente.
 
-VSCode: O script faz uso do comando code para abrir arquivos no VSCode.
+- **VSCode**  
+  O script utiliza o comando `code` para abrir arquivos no Visual Studio Code.
 
-Instalar dependências
+## Instalar dependências
 
-Para instalar as dependências necessárias, crie um ambiente virtual ou use o python global e execute o seguinte comando:
+Para instalar as dependências necessárias, crie um ambiente virtual ou use o Python global e execute o seguinte comando:
 
-```pip install -r requirements.txt```
+```bash
+pip install -r requirements.txt
+´´´
 
 Configuração do ambiente
 
