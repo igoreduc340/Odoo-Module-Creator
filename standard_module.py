@@ -1,62 +1,69 @@
 import subprocess
 import os
 import sys
+from dotenv import load_dotenv  # type: ignore
 
-# Verifica se o nome da pasta destino foi passado como argumento
-if len(sys.argv) != 3:
-    print("Uso: python3 standard_module.py <nome_do_modulo> <nome_do_modelo>")
+load_dotenv()
+# Verifica se todos os argumentos foram passados
+if len(sys.argv) != 4:
+    print("Uso: python3 standard_module.py <module_name> <model_name> <odoo_instance>")
     sys.exit(1)
-    
-nome_do_modulo = sys.argv[1]
-nome_do_modelo = sys.argv[2]
-caminho_conf = '/home/user/Projects/scripts/config.txt'
 
-# Lendo o arquivo de configuração e criando um dicionário
-caminhos = {}
-with open(caminho_conf, 'r') as arquivo:
-    for linha in arquivo:
-        # Dividindo a linha em chave e valor
-        chave, valor = linha.strip().split(' = ')
-        caminhos[chave] = valor
+module_name = sys.argv[1]
+model_name = sys.argv[2]
+odoo_instance = sys.argv[3]
 
 try:
-    destino_vscode = caminhos.get('destino_vscode',False)
-    destino = caminhos.get('destino',False) + f'/{nome_do_modulo}'
+    if odoo_instance == 'Sylvia Design':
+        vscode_destination = os.getenv('DESTINO_VSCODE_SYLVIA')
+        modules_destination = os.path.join(os.getenv('DESTINO_MODULOS_SYLVIA'), module_name)
 
+    elif odoo_instance == 'Asisto Base':
+        vscode_destination = os.getenv('DESTINO_VSCODE_ASISTO_BASE')
+        modules_destination = os.path.join(os.getenv('DESTINO_MODULOS_ASISTO_BASE'), module_name)
+
+    elif odoo_instance == 'Nave':
+        vscode_destination = os.getenv('DESTINO_VSCODE_NAVE')
+        modules_destination = os.path.join(os.getenv('DESTINO_MODULOS_NAVE'), module_name)
+    
 except Exception as e:
-    print(f"Ocorreu um erro no arquivo de configurações: {e}")
+    print(f"Ocorreu um erro ao capturar as variáveis de ambiente: {e}")
+    sys.exit()
 
 # Tenta executar o script
-try:  
-    os.mkdir(destino)
-    os.mkdir(destino + "/views")
-    os.mkdir(destino + "/models")
+try:
+    os.makedirs(modules_destination)
+    os.makedirs(os.path.join(modules_destination, "views"))
+    os.makedirs(os.path.join(modules_destination, "models"))
     
-     #Configura o arquivo __init__
-    with open(destino + '/models/__init__.py', 'w') as arquivo:
-        arquivo.write(f"from . import {nome_do_modelo}")
-        
-    #Configura o arquivo python
-    with open(destino + f'/models/{nome_do_modelo}.py', 'w') as arquivo:
-        arquivo.write(
-f"""# -*- coding: utf-8 -*-    
+    # Configura o arquivo __init__.py
+    with open(os.path.join(modules_destination,'__init__.py'), 'w') as file:
+        file.write(f"from . import models")
+
+    # Configura o arquivo __init__.py
+    with open(os.path.join(modules_destination, 'models', '__init__.py'), 'w') as file:
+        file.write(f"from . import {model_name}")
+
+    # Configura o arquivo Python
+    with open(os.path.join(modules_destination, 'models', f'{model_name}.py'), 'w') as file:
+        file.write(
+f"""# -*- coding: utf-8 -*-
 from odoo import api, fields, models
 
-class {"".join(word.capitalize() for word in nome_do_modelo.split('_'))}(models.Model):
-    _inherit = '{nome_do_modelo.replace('_',".")}'
+class {"".join(word.capitalize() for word in model_name.split('_'))}(models.Model):
+    _inherit = '{model_name.replace('_', ".")}'
 
     godoo_field = fields.Char()""")
-        
-        
-    #Configura o arquivo xml
-    with open(destino + f'/views/{nome_do_modelo}.xml', 'w') as arquivo:
-        arquivo.write(
+
+    # Configura o arquivo XML
+    with open(os.path.join(modules_destination, 'views', f'{model_name}.xml'), 'w') as file:
+        file.write(
 f"""<odoo>
     <data>
             <!-- View Form para modificar -->
-            <record id="view_{nome_do_modelo}_form_inherit" model="ir.ui.view">
-                <field name="name">view.{nome_do_modelo.replace('_','.')}.form.inherit</field>
-                <field name="model">{nome_do_modelo.replace('_',".")}</field>
+            <record id="view_{model_name}_form_inherit" model="ir.ui.view">
+                <field name="name">view.{model_name.replace('_', '.').replace(' ', '_')}.form.inherit</field>
+                <field name="model">{model_name.replace('_', ".")}</field>
                 <field name="inherit_id" ref=""/>
                 <field name="arch" type="xml">
 
@@ -68,9 +75,9 @@ f"""<odoo>
             </record>
 
             <!-- View Tree para modificar -->
-             <record id="view_{nome_do_modelo}_tree_inherit" model="ir.ui.view">
-                <field name="name">view.{nome_do_modelo.replace('_','.')}.tree.inherit</field>
-                 <field name="model">{nome_do_modelo.replace('_',".")}</field>
+             <record id="view_{model_name}_tree_inherit" model="ir.ui.view">
+                <field name="name">view.{model_name.replace('_', '.').replace(' ', '_')}.tree.inherit</field>
+                 <field name="model">{model_name.replace('_', ".")}</field>
                 <field name="inherit_id" ref=""/>
                 <field name="arch" type="xml">
 
@@ -82,26 +89,24 @@ f"""<odoo>
             </record>
     </data>
 </odoo>""")
-                
+
     # Configura o arquivo __manifest__.py
-    with open(destino + '/__manifest__.py', 'w') as arquivo:
-        arquivo.write(
+    with open(os.path.join(modules_destination, '__manifest__.py'), 'w') as file:
+        file.write(
 f"""{{
-    'name': '{" ".join(word.capitalize() for word in nome_do_modulo.split('_'))}',
+    'name': '{" ".join(word.capitalize() for word in module_name.split('_'))}',
     'version': '1.0',
     'description': '',
     'author': 'Asisto - Igor Carvalho',
     'license': 'LGPL-3',
     'category': '',
-    'depends': [
-        
-        ],
-    'data': ['views/{nome_do_modelo}.xml'],
+    'depends': [],
+    'data': ['views/{model_name}.xml'],
     'installable': True,
     'application': True,
 }}"""
         )
-    subprocess.run(['code', destino_vscode ], check=True)
-    
+    subprocess.run(['code', vscode_destination,os.path.join(modules_destination, 'models', f'{model_name}.py')], check=True)
+
 except subprocess.CalledProcessError as e:
     print(f"Ocorreu um erro ao criar o diretório: {e}")
