@@ -14,9 +14,8 @@ Este script Python ajuda a gerar um módulo Odoo básico, incluindo arquivos ess
 
 Para instalar as dependências necessárias, crie um ambiente virtual ou use o Python global e execute o seguinte comando:
 
-```bash
-pip install -r requirements.txt
-´´´
+```pip install -r requirements.txt```
+
 
 Configuração do ambiente
 
@@ -39,16 +38,16 @@ Uso
 ``` python3 app.py```
 
 
-O que o script faz
+### O que o script faz
 
-Cria a estrutura de diretórios:
+1. **Criação da estrutura de diretórios**  
+   O script cria automaticamente os diretórios essenciais para o módulo Odoo, como `views/`, `models/`, entre outros, organizando a estrutura do projeto de forma padronizada.
 
-Cria os diretórios necessários, como views/, models/, etc.
+2. **Geração do arquivo Python do modelo**  
+   O script gera o arquivo `models/my_model.py`, contendo um esqueleto básico para um modelo Odoo, com as classes e atributos iniciais necessários para começar o desenvolvimento.
 
-Cria o arquivo Python do modelo:
+3. **Criação do arquivo de visão (XML)**  
+   Após gerar o modelo, o script cria um arquivo XML básico para definir a visão (view) associada, permitindo que você conecte o modelo com a interface do usuário no Odoo.
 
-Gera o arquivo models/my_model.py com um esqueleto básico de modelo Odoo,
-
-Cria o arquivo de visão (XML):
-
-Após a criação do arquivo do modelo, o script abre automaticamente o arquivo Python no VSCode, usando o comando code.
+4. **Abertura automática no VSCode**  
+   Após a criação dos arquivos, o script abre automaticamente o arquivo Python gerado no VSCode, utilizando o comando `code`, para facilitar a edição e o desenvolvimento imediato.
