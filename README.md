@@ -59,7 +59,7 @@ Uso
 
 Para utilizar , preencha os dois campos 
 
-![nothing](imgs/image2.png.png)
+![nothing](imgs/image2.png)
 
 eles precisam estar separados com " _ " underlines
 
