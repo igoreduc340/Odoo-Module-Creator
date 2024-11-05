@@ -10,8 +10,7 @@ VSCode: O script faz uso do comando code para abrir arquivos no VSCode.
 Instalar dependências
 Para instalar as dependências necessárias, crie um ambiente virtual ou use o python global e execute o seguinte comando:
 
-Copiar código
-```bash pip install -r requirements.txt```
+```pip install -r requirements.txt```
 
 Configuração do ambiente
 Antes de executar o script, você precisa configurar um arquivo .env contendo as variáveis de ambiente necessárias para o script. Essas variáveis definem os caminhos de destino onde o módulo será gerado, no projeto existe um arquivo chamado env.example , apos a configuração troque o nome dele para .env
@@ -27,7 +26,7 @@ DESTINO_MODULOS_ASISTO_BASE=/caminho/para/o/modulo/asisto-base
 
 DESTINO_VSCODE_NAVE=/caminho/para/o/vscode/nave
 DESTINO_MODULOS_NAVE=/caminho/para/o/modulo/nave
-
+```
 Uso
 Este script deve ser executado a partir da linha de comando. :
 
