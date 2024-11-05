@@ -11,13 +11,14 @@ Instalar dependências
 Para instalar as dependências necessárias, crie um ambiente virtual ou use o python global e execute o seguinte comando:
 
 Copiar código
-```pip install -r requirements.txt```
+```bash pip install -r requirements.txt```
 
 Configuração do ambiente
 Antes de executar o script, você precisa configurar um arquivo .env contendo as variáveis de ambiente necessárias para o script. Essas variáveis definem os caminhos de destino onde o módulo será gerado, no projeto existe um arquivo chamado env.example , apos a configuração troque o nome dele para .env
 
 Exemplo de arquivo:
 
+```ini
 DESTINO_VSCODE_SYLVIA=/caminho/para/o/vscode/sylvia
 DESTINO_MODULOS_SYLVIA=/caminho/para/o/modulo/sylvia
 
